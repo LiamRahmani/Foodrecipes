@@ -1,0 +1,42 @@
+
+CREATE TABLE [User] (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL
+);
+
+SET IDENTITY_INSERT [dbo].[User] ON
+
+INSERT [dbo].[User] ([Id], [Username], [Password], [Email]) VALUES (1, N'Peter', N'9876', N'peter.p@gmail.com')
+INSERT [dbo].[User] ([Id], [Username], [Password], [Email]) VALUES (2, N'Atina', N'12345', N'foodlover123@gmail.com')
+
+SET IDENTITY_INSERT [dbo].[User] OFF
+
+
+CREATE TABLE [Categories] (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    name VARCHAR(50) NOT NULL
+);
+
+SET IDENTITY_INSERT [dbo].[Categories] ON
+
+INSERT [dbo].[Categories] ([Id], [Name]) VALUES (1, N'Svensk husmanskost')
+INSERT [dbo].[Categories] ([Id], [Name]) VALUES (2, N'Franskt')
+INSERT [dbo].[Categories] ([Id], [Name]) VALUES (3, N'Italienskt')
+INSERT [dbo].[Categories] ([Id], [Name]) VALUES (4, N'Kinesiskt')
+
+SET IDENTITY_INSERT [dbo].[Categories] OFF
+
+
+CREATE TABLE [Recipes] (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Title NVARCHAR(MAX) NOT NULL,
+    Description NVARCHAR(MAX) NOT NULL,
+    Ingredients NVARCHAR(MAX) NOT NULL,
+    Rate INT,
+    CategoryId INT NOT NULL,
+    UserId INT NOT NULL,
+    CONSTRAINT FK_Recipe_Category FOREIGN KEY (CategoryId) REFERENCES Categories(Id),
+    CONSTRAINT FK_Recipe_User FOREIGN KEY (UserId) REFERENCES Users(Id)
+);

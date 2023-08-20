@@ -103,12 +103,12 @@ namespace FoodRecipes.Controllers
         {
             try
             {
-                var response = await _userRepo.GetUserById(id);
-                if (response == null)
+                var userToUpdate = await _userRepo.GetUserById(id);
+                if (userToUpdate == null)
                     return NotFound();
 
-                await _userRepo.UpdateUser(id, user);
-                return NoContent();
+                var response = await _userRepo.UpdateUser(id, user);
+                return Ok(response);
             }
             catch (Exception ex)
             {
@@ -122,12 +122,12 @@ namespace FoodRecipes.Controllers
         {
             try
             {
-                var dbCompany = await _userRepo.GetUserById(id);
-                if (dbCompany == null)
+                var userToDelete = await _userRepo.GetUserById(id);
+                if (userToDelete == null)
                     return NotFound();
 
-                await _userRepo.DeleteUser(id);
-                return NoContent();
+                var response = await _userRepo.DeleteUser(id);
+                return Ok(response);
             }
             catch (Exception ex)
             {

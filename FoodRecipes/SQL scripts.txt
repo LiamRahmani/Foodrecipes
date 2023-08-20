@@ -1,17 +1,17 @@
 
-CREATE TABLE [User] (
+CREATE TABLE [Users] (
     id INT PRIMARY KEY IDENTITY(1,1),
     username VARCHAR(50) NOT NULL,
     password VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL
 );
 
-SET IDENTITY_INSERT [dbo].[User] ON
+SET IDENTITY_INSERT [dbo].[Users] ON
 
-INSERT [dbo].[User] ([Id], [Username], [Password], [Email]) VALUES (1, N'Peter', N'9876', N'peter.p@gmail.com')
-INSERT [dbo].[User] ([Id], [Username], [Password], [Email]) VALUES (2, N'Atina', N'12345', N'foodlover123@gmail.com')
+INSERT [dbo].[Users] ([Id], [Username], [Password], [Email]) VALUES (1, N'Peter', N'9876', N'peter.p@gmail.com')
+INSERT [dbo].[Users] ([Id], [Username], [Password], [Email]) VALUES (2, N'Atina', N'12345', N'foodlover123@gmail.com')
 
-SET IDENTITY_INSERT [dbo].[User] OFF
+SET IDENTITY_INSERT [dbo].[Users] OFF
 
 
 CREATE TABLE [Categories] (

@@ -29,7 +29,23 @@ namespace FoodRecipes.Controllers
             }
             catch (Exception ex)
             {
-                //log error
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet("SearchRecipesByTitle/{searchTitle}", Name = "SearchRecipesByTitle")]
+        public async Task<IActionResult> GetRecipesByTitle(string searchTitle)
+        {
+            try
+            {
+                var response = await _recipeRepo.GetRecipeByTitle(searchTitle);
+                if (response == null)
+                    return NotFound();
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
                 return StatusCode(500, ex.Message);
             }
         }
@@ -49,12 +65,11 @@ namespace FoodRecipes.Controllers
             }
             catch (Exception ex)
             {
-                //log error
                 return StatusCode(500, ex.Message);
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("UpdateRecipe/{id}")]
         public async Task<IActionResult> UpdateRecipe(int id, RecipeUpdateDto recipe)
         {
             try
@@ -78,7 +93,6 @@ namespace FoodRecipes.Controllers
             }
             catch (Exception ex)
             {
-                //log error
                 return StatusCode(500, ex.Message);
             }
         }
@@ -107,12 +121,11 @@ namespace FoodRecipes.Controllers
             }
             catch (Exception ex)
             {
-                //log error
                 return StatusCode(500, ex.Message);
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteRecipe/{id}")]
         public async Task<IActionResult> DeleteRecipe(int id)
         {
             try
@@ -136,7 +149,6 @@ namespace FoodRecipes.Controllers
             }
             catch (Exception ex)
             {
-                //log error
                 return StatusCode(500, ex.Message);
             }
         }

@@ -40,6 +40,18 @@ namespace FoodRecipes.Repository
             }
         }
 
+        public async Task<Recipe> GetRecipeByTitle(string searchTitle)
+        {
+            string query = "SELECT * FROM Recipes WHERE lower(Title) LIKE '%' + @searchTitle + '%';";
+
+            using (var connection = _context.CreateConnection())
+            {
+                var recipe = await connection.QuerySingleOrDefaultAsync<Recipe>(query, new { searchTitle });
+
+                return recipe;
+            }
+        }
+
         public async Task<Recipe> CreateRecipe(RecipeCreateDto recipe, int userId)
         {
             var query = "INSERT INTO Recipes (Title, Description, Ingredients, CategoryId, UserId) " +

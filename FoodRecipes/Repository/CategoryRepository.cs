@@ -16,7 +16,7 @@ namespace FoodRecipes.Repository
 
         public async Task<IEnumerable<Category>> GetCategories()
         {
-            var query = "SELECT Name FROM Categories";
+            var query = "SELECT * FROM Categories";
 
             using (var connection = _context.CreateConnection())
             {

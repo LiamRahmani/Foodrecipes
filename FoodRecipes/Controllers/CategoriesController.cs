@@ -16,7 +16,7 @@ namespace FoodRecipes.Controllers
             _categoryRepo = categoryRepo;
         }
 
-        [HttpGet]
+        [HttpGet("GetAllCategories")]
         public async Task<IActionResult> GetCategories()
         {
             try

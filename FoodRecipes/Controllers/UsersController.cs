@@ -34,7 +34,7 @@ namespace FoodRecipes.Controllers
             }
         }
 
-        [HttpGet("{id}", Name = "UserById")]
+        [HttpGet("GetUserById/{id}", Name = "UserById")]
         public async Task<IActionResult> GetUser(int id)
         {
             try
@@ -98,7 +98,7 @@ namespace FoodRecipes.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("UpdateUser/{id}")]
         public async Task<IActionResult> UpdateUser(int id, UserUpdateDto user)
         {
             try
@@ -117,7 +117,7 @@ namespace FoodRecipes.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteUser/{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             try
